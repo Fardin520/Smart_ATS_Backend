@@ -6,6 +6,7 @@ import google.generativeai as genai  # ◄ Imported Google's Library
 from .models import Application
 from dotenv import load_dotenv
 from pathlib import Path
+from django.core.mail import send_mail
 
 # Explicitly load the environmental ledger variables for the Celery process
 base_dir = Path(__file__).resolve().parent.parent
@@ -62,6 +63,27 @@ def process_resume(application_id):
         app.ai_feedback = parsed_data  # Saves complete structural JSON array data
         app.status = 'REVIEWED'
         app.save()
+        # --- MILESTONE 2: AUTOMATED EMAIL ALERT ---
+        print(f"Sending confirmation email to {app.candidate_email}...")
+        
+        subject = f"Application Update: {app.job.title} Role"
+        message = (
+            f"Hi {app.candidate_name},\n\n"
+            f"Thank you for applying for the {app.job.title} position!\n\n"
+            f"Our automated system has successfully reviewed your resume. "
+            f"Your profile has been forwarded to our engineering management team for manual review.\n\n"
+            f"Best regards,\n"
+            f"The Recruitment Team"
+        )
+        
+        send_mail(
+            subject=subject,
+            message=message,
+            from_email=None,  # Automatically uses DEFAULT_FROM_EMAIL from settings
+            recipient_list=[app.candidate_email],
+            fail_silently=False, # Logs errors if the mail service encounters problems
+        )
+        print("Email dispatched successfully!")
 
     except Exception as e:
         # Failsafe logic to avoid process hangs on parsing drops

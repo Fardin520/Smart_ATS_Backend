@@ -78,8 +78,8 @@ CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 
-# OpenAI
-OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
+# GEMINI
+GEMINI_API_KEY = os.getenv('GEMINI_API_KEY')
 
 # REST Framework
 REST_FRAMEWORK = {
@@ -89,3 +89,6 @@ REST_FRAMEWORK = {
         'rest_framework.parsers.FormParser',
     ]
 }
+# Email configuration for development (prints emails directly to your terminal)
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+DEFAULT_FROM_EMAIL = 'recruitment@smartats.com'
