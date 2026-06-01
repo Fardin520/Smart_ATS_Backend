@@ -1,4 +1,4 @@
-﻿# Smart ATS Backend 🚀
+﻿# Smart ATS Backend 
 
 Hey there! Welcome to the backend engine of my AI-Powered Applicant Tracking System (ATS). 
 
@@ -6,7 +6,7 @@ I built this project because standard recruitment tools are slow and often requi
 
 ---
 
-## 🧠 What Makes This Project Special?
+##  What Makes This Project Special?
 
 If you look at the code, you'll see it's not just a basic Django script. I designed this as a **decoupled, distributed system**. 
 
@@ -20,7 +20,7 @@ Here is what it does under the hood:
 
 ---
 
-## 🛠️ The Core Tech Stack
+##  The Core Tech Stack
 
 * **The Framework:** Django & Django REST Framework (Building the REST API)
 * **The Brains:** Google Gemini 2.5 Flash API (Handling the resume evaluation)
@@ -31,7 +31,7 @@ Here is what it does under the hood:
 
 ---
 
-## ⚡ How to Run It (The Easy Way)
+##  How to Run It (The Easy Way)
 
 Because this system uses multiple moving parts (Django, a Redis mailbox, and a Celery worker), manually configuring it on your local machine can be a headache. To fix that, I fully **Dockerized** the entire ecosystem. 
 
